@@ -15,18 +15,17 @@ public class VolumeEntity extends AbstractEntity{
     private String volumeShort;
 
     @Column(nullable = false)
-    private Integer chaptersNumber;
+    private Integer chapterAmount;
 
-    @OneToMany(mappedBy = "volume")
+    @OneToMany(mappedBy = "volume_id")
     private Collection<ChapterEntity> chapters = new ArrayList<>();
 
     public VolumeEntity() {}
 
-    public VolumeEntity(String volumeName, String volumeShort, Integer chaptersNumber, Collection<ChapterEntity> chapters) {
+    public VolumeEntity(String volumeName, String volumeShort, Integer chapterAmount, Collection<ChapterEntity> chapters) {
         this.volumeName = volumeName;
         this.volumeShort = volumeShort;
-        this.chaptersNumber = chaptersNumber;
-        this.chapters = chapters;
+        this.chapterAmount = chapterAmount;
     }
 
     public String getVolumeName() {
@@ -45,11 +44,11 @@ public class VolumeEntity extends AbstractEntity{
         this.volumeShort = tomeShort;
     }
 
-    public Integer getChaptersNumber() {
-        return chaptersNumber;
+    public Integer getChapterAmount() {
+        return chapterAmount;
     }
 
-    public void setChaptersNumber(Integer chapters) {
-        this.chaptersNumber = chapters;
+    public void setChapterAmount(Integer chapters) {
+        this.chapterAmount = chapters;
     }
 }

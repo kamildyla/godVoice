@@ -10,7 +10,7 @@ public abstract class AbstractEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Version
     private Long version;
@@ -21,11 +21,11 @@ public abstract class AbstractEntity {
     @CreationTimestamp
     private LocalDateTime updateDate;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

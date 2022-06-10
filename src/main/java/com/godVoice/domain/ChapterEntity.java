@@ -6,22 +6,22 @@ import javax.persistence.*;
 @Table(name = "CHAPTER")
 public class ChapterEntity extends AbstractEntity{
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "VOLUME_ID", nullable = false)
+    private VolumeEntity volume_id;
+
     @Column(nullable = false)
     private Integer chapter;
 
     @Column(nullable = false)
     private Integer verses;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "VOLUME_ID", nullable = false)
-    private VolumeEntity volume;
-
     public ChapterEntity() {}
 
-    public ChapterEntity(Integer chapter, Integer verses, VolumeEntity volume) {
+    public ChapterEntity(Integer chapter, Integer verses, VolumeEntity volume_id) {
         this.chapter = chapter;
         this.verses = verses;
-        this.volume = volume;
+        this.volume_id = volume_id;
     }
 
     public Integer getChapter() {
@@ -40,11 +40,11 @@ public class ChapterEntity extends AbstractEntity{
         this.verses = verses;
     }
 
-    public VolumeEntity getVolume() {
-        return volume;
+    public VolumeEntity getVolume_id() {
+        return volume_id;
     }
 
-    public void setVolume(VolumeEntity volume) {
-        this.volume = volume;
+    public void setVolume_id(VolumeEntity volume) {
+        this.volume_id = volume;
     }
 }
