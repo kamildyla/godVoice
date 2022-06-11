@@ -1,6 +1,7 @@
 package com.godVoice.service.impl;
 
 import com.godVoice.service.RandomService;
+import com.godVoice.service.ds.Range;
 import org.junit.jupiter.api.RepeatedTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,4 +27,24 @@ class RandomServiceImplTest {
         assertTrue(min <= result  && result <= max);
     }
 
+    @RepeatedTest(20)
+    public void shouldDrawRangeFromGivenScope() {
+        // given
+        int maxValue = 50;
+        int maxRange = 7;
+
+        // when
+        Range result = randomService.drawRange(maxValue, maxRange);
+
+        int resultRangeFrom = result.getRangeFrom();
+        int resultRangeTo = result.getRangeTo();
+        int range = resultRangeTo - resultRangeFrom;
+
+        System.out.println(resultRangeFrom + " - " + resultRangeTo + " range: " + (range+1));
+        //then
+        assertTrue(resultRangeTo <= maxValue);
+        assertTrue(resultRangeFrom >= 1);
+        assertTrue(resultRangeTo >= resultRangeFrom);
+        assertTrue(range <= maxRange);
+    }
 }
