@@ -13,6 +13,6 @@ public interface VolumeService {
 
     Integer findChapterAmountByVolumeNumber(Integer volumeNumber);
 
-    VolumeDTO chooseVolume() throws EntityNotExistException;
+    VolumeDTO drawVolume() throws EntityNotExistException;
 
 }

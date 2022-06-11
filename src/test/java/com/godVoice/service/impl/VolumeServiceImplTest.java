@@ -11,11 +11,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 class VolumeServiceImplTest {
 
     @Autowired
-    VolumeService volumeService;
+    private VolumeService volumeService;
 
     @Test
     public void shouldReturnRandomVolume() throws EntityNotExistException {
-        VolumeDTO volumeDTO = volumeService.chooseVolume();
+        VolumeDTO volumeDTO = volumeService.drawVolume();
+        VolumeDTO volumeDTO1 = volumeService.drawVolume();
+        VolumeDTO volumeDTO2 = volumeService.drawVolume();
+        VolumeDTO volumeDTO3 = volumeService.drawVolume();
         System.out.println("Hello");
     }
 

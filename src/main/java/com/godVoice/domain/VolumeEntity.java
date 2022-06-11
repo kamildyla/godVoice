@@ -6,7 +6,7 @@ import java.util.Collection;
 
 @Entity
 @Table(name = "VOLUME")
-public class VolumeEntity extends AbstractEntity{
+public class VolumeEntity extends AbstractEntity {
 
     @Column(nullable = false)
     private Integer volumeNumber;
@@ -19,7 +19,10 @@ public class VolumeEntity extends AbstractEntity{
     @Column(nullable = false)
     private Integer chapterAmount;
 
-    @OneToMany(mappedBy = "volumeNo")
+    @OneToMany(
+            mappedBy = "volumeNo",
+            cascade = CascadeType.REMOVE
+    )
     private Collection<ChapterEntity> chapters = new ArrayList<>();
 
     public VolumeEntity() {}

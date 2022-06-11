@@ -16,7 +16,7 @@ import java.util.Optional;
 public class ChapterServiceImpl implements ChapterService {
 
     @Autowired
-    ChapterRepository chapterRepo;
+    private ChapterRepository chapterRepo;
 
     @Override
     public ChapterDTO findById(Long id) throws EntityNotExistException {

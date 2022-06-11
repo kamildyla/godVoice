@@ -4,6 +4,7 @@ import com.godVoice.domain.VolumeEntity;
 import com.godVoice.exceptions.EntityNotExistException;
 import com.godVoice.mappers.VolumeMapper;
 import com.godVoice.repo.VolumeRepository;
+import com.godVoice.service.RandomService;
 import com.godVoice.service.VolumeService;
 import com.godVoice.types.VolumeDTO;
 import com.godVoice.validation.VolumeValidator;
@@ -18,7 +19,10 @@ public class VolumeServiceImpl implements VolumeService {
     private final int VOLUMES_NUMBER = 73;
 
     @Autowired
-    VolumeRepository volumeRepo;
+    private VolumeRepository volumeRepo;
+
+    @Autowired
+    private RandomService randomService;
 
     @Override
     public VolumeDTO findById(Long id) throws EntityNotExistException {
@@ -44,8 +48,8 @@ public class VolumeServiceImpl implements VolumeService {
     }
 
     @Override
-    public VolumeDTO chooseVolume() throws EntityNotExistException {
-        Integer volumeNo = (int) (Math.random() * VOLUMES_NUMBER);
+    public VolumeDTO drawVolume() throws EntityNotExistException {
+        Integer volumeNo = randomService.drawOneNumber(VOLUMES_NUMBER);
         return this.findByVolumeNumber(volumeNo);
     }
 
