@@ -7,9 +7,9 @@ import java.util.Optional;
 
 public class VolumeValidator {
 
-    public static void isPresent(Optional<VolumeEntity> entity, Long id) throws EntityNotExistException {
+    public static void isPresent(Optional<VolumeEntity> entity) throws EntityNotExistException {
         if (entity.isEmpty()) {
-            throw new EntityNotExistException(id);
+            throw new EntityNotExistException();
         }
     }
 }

@@ -27,7 +27,7 @@ public class VolumeServiceImpl implements VolumeService {
     @Override
     public VolumeDTO findById(Long id) throws EntityNotExistException {
         Optional<VolumeEntity> volumeEntityOpt = volumeRepo.findById(id);
-        VolumeValidator.isPresent(volumeEntityOpt, id);
+        VolumeValidator.isPresent(volumeEntityOpt);
         return VolumeMapper.toVolumeDTO(volumeEntityOpt.get());
     }
 

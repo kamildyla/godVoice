@@ -18,7 +18,6 @@ class VolumeRepositoryTest {
 
     @Autowired
     private DataFactory dataFactory;
-
     @Autowired
     private VolumeRepository volumeRepo;
 

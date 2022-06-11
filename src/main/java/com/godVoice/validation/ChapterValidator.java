@@ -7,9 +7,9 @@ import java.util.Optional;
 
 public class ChapterValidator {
 
-    public static void isPresent(Optional<ChapterEntity> entity, Long id) throws EntityNotExistException {
+    public static void isPresent(Optional<ChapterEntity> entity) throws EntityNotExistException {
         if (entity.isEmpty()) {
-            throw new EntityNotExistException(id);
+            throw new EntityNotExistException();
         }
     }
 }
