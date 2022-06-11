@@ -9,6 +9,8 @@ import java.util.Collection;
 public class VolumeEntity extends AbstractEntity{
 
     @Column(nullable = false)
+    private Integer volumeNumber;
+    @Column(nullable = false)
     private String volumeName;
 
     @Column(nullable = false)
@@ -17,15 +19,24 @@ public class VolumeEntity extends AbstractEntity{
     @Column(nullable = false)
     private Integer chapterAmount;
 
-    @OneToMany(mappedBy = "volume_id")
+    @OneToMany(mappedBy = "volumeNo")
     private Collection<ChapterEntity> chapters = new ArrayList<>();
 
     public VolumeEntity() {}
 
-    public VolumeEntity(String volumeName, String volumeShort, Integer chapterAmount, Collection<ChapterEntity> chapters) {
+    public VolumeEntity(Integer volumeNumber, String volumeName, String volumeShort, Integer chapterAmount) {
+        this.volumeNumber = volumeNumber;
         this.volumeName = volumeName;
         this.volumeShort = volumeShort;
         this.chapterAmount = chapterAmount;
+    }
+
+    public Integer getVolumeNumber() {
+        return volumeNumber;
+    }
+
+    public void setVolumeNumber(Integer volumeNumber) {
+        this.volumeNumber = volumeNumber;
     }
 
     public String getVolumeName() {

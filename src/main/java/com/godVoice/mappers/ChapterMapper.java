@@ -16,7 +16,7 @@ public class ChapterMapper {
         return ChapterDTO.builder()
                 .id(chapterEntity.getId())
                 .version(chapterEntity.getVersion())
-                .volume_id(chapterEntity.getVolume_id())
+                .volumeNo(chapterEntity.getVolumeNo())
                 .chapter(chapterEntity.getChapter())
                 .verses(chapterEntity.getVerses())
                 .build();
@@ -30,7 +30,7 @@ public class ChapterMapper {
         ChapterEntity chapterEntity = new ChapterEntity();
         chapterEntity.setId(chapterDTO.getId());
         chapterEntity.setVersion(chapterDTO.getVersion());
-        chapterEntity.setVolume_id(chapterDTO.getVolume_id());
+        chapterEntity.setVolumeNo(chapterDTO.getVolumeNo());
         chapterEntity.setChapter(chapterDTO.getChapter());
         chapterEntity.setVerses(chapterEntity.getVerses());
 

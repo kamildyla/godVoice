@@ -13,7 +13,7 @@ public class ChapterDTO {
     private Long id;
     private Long version;
     @NonNull
-    private VolumeEntity volume_id;
+    private VolumeEntity volumeNo;
     @NonNull
     private Integer chapter;
     @NonNull

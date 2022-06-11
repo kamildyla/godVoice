@@ -12,6 +12,8 @@ public class VolumeDTO {
     private Long id;
     private Long version;
     @NonNull
+    private Integer volumeNumber;
+    @NonNull
     private String volumeName;
     @NonNull
     private String volumeShort;

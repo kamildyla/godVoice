@@ -15,6 +15,8 @@ import java.util.Optional;
 @Service
 public class VolumeServiceImpl implements VolumeService {
 
+    private final int VOLUMES_NUMBER = 73;
+
     @Autowired
     VolumeRepository volumeRepo;
 
@@ -26,9 +28,25 @@ public class VolumeServiceImpl implements VolumeService {
     }
 
     @Override
+    public VolumeDTO findByVolumeNumber(Integer volumeNumber) throws EntityNotExistException {
+        Long volume_id = volumeRepo.findIdByVolumeNumber(volumeNumber);
+        return this.findById(volume_id);
+    }
+
+    @Override
     public Integer findChapterAmountById(Long id) {
-        volumeRepo.findChapterAmountById(id);
-        return null;
+        return volumeRepo.findChapterAmountById(id);
+    }
+
+    @Override
+    public Integer findChapterAmountByVolumeNumber(Integer volumeNumber) {
+        return volumeRepo.findChapterAmountByVolumeNumber(volumeNumber);
+    }
+
+    @Override
+    public VolumeDTO chooseVolume() throws EntityNotExistException {
+        Integer volumeNo = (int) (Math.random() * VOLUMES_NUMBER);
+        return this.findByVolumeNumber(volumeNo);
     }
 
 

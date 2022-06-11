@@ -7,8 +7,8 @@ import javax.persistence.*;
 public class ChapterEntity extends AbstractEntity{
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "VOLUME_ID", nullable = false)
-    private VolumeEntity volume_id;
+    @JoinColumn(name = "VOLUME_NO", nullable = false)
+    private VolumeEntity volumeNo;
 
     @Column(nullable = false)
     private Integer chapter;
@@ -18,10 +18,10 @@ public class ChapterEntity extends AbstractEntity{
 
     public ChapterEntity() {}
 
-    public ChapterEntity(Integer chapter, Integer verses, VolumeEntity volume_id) {
+    public ChapterEntity(Integer chapter, Integer verses, VolumeEntity volumeNo) {
         this.chapter = chapter;
         this.verses = verses;
-        this.volume_id = volume_id;
+        this.volumeNo = volumeNo;
     }
 
     public Integer getChapter() {
@@ -40,11 +40,11 @@ public class ChapterEntity extends AbstractEntity{
         this.verses = verses;
     }
 
-    public VolumeEntity getVolume_id() {
-        return volume_id;
+    public VolumeEntity getVolumeNo() {
+        return volumeNo;
     }
 
-    public void setVolume_id(VolumeEntity volume) {
-        this.volume_id = volume;
+    public void setVolumeNo(VolumeEntity volume) {
+        this.volumeNo = volume;
     }
 }
