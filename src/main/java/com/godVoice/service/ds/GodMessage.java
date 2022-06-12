@@ -11,7 +11,6 @@ public class GodMessage {
 
     private String volumeShort;
     private Integer chapterNumber;
-    private Integer verseFrom;
-    private Integer verseTo;
+    private String verses;
 
 }

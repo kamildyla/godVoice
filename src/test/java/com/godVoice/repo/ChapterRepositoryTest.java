@@ -30,8 +30,8 @@ class ChapterRepositoryTest {
     // TODO to improve
     @Test
     public void should() {
-        Long id = chapterRepo.findIdByChapterAndVolumeNumber(2, 1);
-        System.out.println(id);
+        Long id = chapterRepo.findIdByChapterAndVolumeNumber(2, 2);
+        System.out.println(id); // 13
     }
 
 }

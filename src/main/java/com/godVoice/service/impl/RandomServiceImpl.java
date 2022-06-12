@@ -15,7 +15,6 @@ public class RandomServiceImpl implements RandomService {
 
     @Override
     public Range drawRange(int maxValue, int maxRange) {
-        // TODO maxRange = 7 for verses
         int valueFrom = drawOneNumber(maxValue);
         int range = drawOneNumber(maxRange) - 1;
         int valueTo = valueFrom + range;
