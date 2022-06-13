@@ -10,7 +10,9 @@ import com.godVoice.service.ds.Range;
 import com.godVoice.types.ChapterDTO;
 import com.godVoice.types.VolumeDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class MessageServiceImpl implements MessageService {
 
     @Autowired
@@ -20,7 +22,9 @@ public class MessageServiceImpl implements MessageService {
     @Autowired
     RandomService randomService;
 
-    private final int MAX_VERSES_AMOUNT = 7;
+    private final int VOLUMES_AMOUNT = 73;
+
+    private final int MAX_VERSES_AMOUNT = 7; // TODO if verses exist less than 7
 
     @Override
     public GodMessage prepareGodMessage() throws EntityNotExistException {
@@ -32,16 +36,15 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public String messageToString(GodMessage message) throws EntityNotExistException {
-        message = prepareGodMessage();
+    public String messageToString(GodMessage message)  {
         return String.format("%s, %d, %s", message.getVolumeShort(), message.getChapterNumber(), message.getVerses());
     }
 
     private VolumeDTO defineVolumeShort() throws EntityNotExistException {
-        return volumeService.drawVolume();
+        return volumeService.drawVolume(VOLUMES_AMOUNT);
     }
 
-    private ChapterDTO defineChapterNumber(VolumeDTO volume) {
+    private ChapterDTO defineChapterNumber(VolumeDTO volume) throws EntityNotExistException {
         return chapterService.drawChapterFromVolume(volume);
     }
 
@@ -59,7 +62,7 @@ public class MessageServiceImpl implements MessageService {
             message.setVerses("" + verses.getRangeFrom());
         }
         else {
-            message.setVerses(verses.getRangeFrom() + " - " + verses.getRangeTo());
+            message.setVerses(verses.getRangeFrom() + "-" + verses.getRangeTo());
         }
 
         return message;

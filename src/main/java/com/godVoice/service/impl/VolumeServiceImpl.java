@@ -16,8 +16,6 @@ import java.util.Optional;
 @Service
 public class VolumeServiceImpl implements VolumeService {
 
-    private final int VOLUMES_NUMBER = 73;
-
     @Autowired
     private VolumeRepository volumeRepo;
 
@@ -48,8 +46,8 @@ public class VolumeServiceImpl implements VolumeService {
     }
 
     @Override
-    public VolumeDTO drawVolume() throws EntityNotExistException {
-        Integer volumeNo = randomService.drawOneNumber(VOLUMES_NUMBER);
+    public VolumeDTO drawVolume(int volumesAmount) throws EntityNotExistException {
+        Integer volumeNo = randomService.drawOneNumber(volumesAmount);
         return this.findByVolumeNumber(volumeNo);
     }
 

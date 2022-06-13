@@ -36,9 +36,9 @@ public class ChapterServiceImpl implements ChapterService {
     }
 
     @Override
-    public ChapterDTO drawChapterFromVolume(VolumeDTO volume) {
+    public ChapterDTO drawChapterFromVolume(VolumeDTO volume) throws EntityNotExistException {
         int chapterNumber = randomService.drawOneNumber(volume.getChapterAmount());
-
-        return null;
+        Long chapterId = chapterRepo.findIdByChapterAndVolumeNumber(chapterNumber, volume.getVolumeNumber());
+        return findById(chapterId);
     }
 }
