@@ -29,9 +29,9 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public GodMessage prepareGodMessage() throws EntityNotExistException, VolumeNumberException {
-        VolumeDTO volume = defineVolumeShort();
-        ChapterDTO chapter = defineChapterNumber(volume);
-        Range verses = defineVerses(chapter);
+        VolumeDTO volume = drawVolume();
+        ChapterDTO chapter = drawChapter(volume);
+        Range verses = drawVerses(chapter);
 
         return prepareMessage(volume, chapter, verses);
     }
@@ -41,15 +41,15 @@ public class MessageServiceImpl implements MessageService {
         return String.format("%s, %d, %s", message.getVolumeShort(), message.getChapterNumber(), message.getVerses());
     }
 
-    private VolumeDTO defineVolumeShort() throws EntityNotExistException, VolumeNumberException {
+    private VolumeDTO drawVolume() throws EntityNotExistException, VolumeNumberException {
         return volumeService.drawVolume(VOLUMES_AMOUNT);
     }
 
-    private ChapterDTO defineChapterNumber(VolumeDTO volume) throws EntityNotExistException {
+    private ChapterDTO drawChapter(VolumeDTO volume) throws EntityNotExistException {
         return chapterService.drawChapterFromVolume(volume);
     }
 
-    private Range defineVerses(ChapterDTO chapter) {
+    private Range drawVerses(ChapterDTO chapter) {
         return randomService.drawRange(chapter.getVerses(), MAX_VERSES_AMOUNT);
     }
 
