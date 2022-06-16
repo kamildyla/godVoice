@@ -1,0 +1,24 @@
+debug: false
+server:
+  port: 8095 # app will be available under http://localhost:8095/
+spring:
+  datasource:
+    url: 'jdbc:mysql://localhost:3306/god_voice'
+    username: 'root'
+    password: 'mySQLpa$$word'
+    driverClassName: 'com.mysql.jdbc.Driver'
+  jpa:
+    database-platform: 'org.hibernate.dialect.MySQL5InnoDBDialect'
+    properties:
+      hibernate:
+        show_sql: true
+        use_sql_comments: true
+        format_sql: true
+      jdbc:
+        time_zone: 'UTC'
+logging:
+  level:
+    org:
+      hibernate:
+        tool:
+          hbm2ddl: debug
