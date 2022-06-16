@@ -39,16 +39,6 @@ public class VolumeServiceImpl implements VolumeService {
         return this.findById(volume_id);
     }
 
-//    @Override
-//    public Integer findChapterAmountById(Long id) {
-//        return volumeRepo.findChapterAmountById(id);
-//    }
-
-//    @Override
-//    public Integer findChapterAmountByVolumeNumber(Integer volumeNumber) {
-//        return volumeRepo.findChapterAmountByVolumeNumber(volumeNumber);
-//    }
-
     @Override
     public VolumeDTO drawVolume(int volumesAmount) throws VolumeNumberException, EntityNotExistException {
         Integer volumeNo = randomService.drawOneNumber(volumesAmount);
