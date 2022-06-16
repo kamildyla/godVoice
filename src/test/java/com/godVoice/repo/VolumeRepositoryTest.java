@@ -34,13 +34,28 @@ class VolumeRepositoryTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 4 ,5})
     public void shouldReturnTrueForRightChapterAmount(int volumeNumber) {
-        int chapterAmount = volumeRepo.findChapterAmountByVolumeNumber(volumeNumber);
+        Integer chapterAmount = volumeRepo.findChapterAmountByVolumeNumber(volumeNumber);
+
         boolean isPresent = (chapterAmount == 11 ||
                 chapterAmount == 12 ||
                 chapterAmount == 13 ||
                 chapterAmount == 14 ||
                 chapterAmount == 15);
+
+        assertNotNull(chapterAmount);
         assertTrue(isPresent);
+    }
+
+    @Test
+    public void shouldReturnNullWhenVolumeNumberNotExist() {
+        // given
+        int volumeNumber = -6;
+
+        // when
+        Integer chapterAmount = volumeRepo.findChapterAmountByVolumeNumber(volumeNumber);
+
+        // then
+        assertNull(chapterAmount);
     }
 
     @Test
@@ -77,6 +92,18 @@ class VolumeRepositoryTest {
     }
 
     @Test
+    public void shouldReturnNullIfWrongVolumeNumber() {
+        // given
+        int volumeNumber = -6;
+
+        // when
+        Long volumeId = volumeRepo.findIdByVolumeNumber(volumeNumber);
+
+        // then
+        assertNull(volumeId);
+    }
+
+    @Test
     public void shouldFindChapterAmountById() {
         // given
         Long id_volumeOne = volumeRepo.findIdByVolumeNumber(1);
@@ -104,6 +131,18 @@ class VolumeRepositoryTest {
         assertEquals(expected_volumeThree, result_volumeThree);
         assertEquals(expected_volumeFour, result_volumeFour);
         assertEquals(expected_volumeFive, result_volumeFive);
+    }
+
+    @Test
+    public void shouldReturnNullIfIdNotExist() {
+        // given
+        Long id = -6L;
+
+        // when
+        Integer chapterAmount = volumeRepo.findChapterAmountById(id);
+
+        // then
+        assertNull(chapterAmount);
     }
 
 }

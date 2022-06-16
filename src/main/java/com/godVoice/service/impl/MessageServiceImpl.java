@@ -1,6 +1,7 @@
 package com.godVoice.service.impl;
 
 import com.godVoice.exceptions.EntityNotExistException;
+import com.godVoice.exceptions.VolumeNumberException;
 import com.godVoice.service.ChapterService;
 import com.godVoice.service.MessageService;
 import com.godVoice.service.RandomService;
@@ -27,7 +28,7 @@ public class MessageServiceImpl implements MessageService {
     private final int MAX_VERSES_AMOUNT = 7; // TODO if verses exist less than 7
 
     @Override
-    public GodMessage prepareGodMessage() throws EntityNotExistException {
+    public GodMessage prepareGodMessage() throws EntityNotExistException, VolumeNumberException {
         VolumeDTO volume = defineVolumeShort();
         ChapterDTO chapter = defineChapterNumber(volume);
         Range verses = defineVerses(chapter);
@@ -40,7 +41,7 @@ public class MessageServiceImpl implements MessageService {
         return String.format("%s, %d, %s", message.getVolumeShort(), message.getChapterNumber(), message.getVerses());
     }
 
-    private VolumeDTO defineVolumeShort() throws EntityNotExistException {
+    private VolumeDTO defineVolumeShort() throws EntityNotExistException, VolumeNumberException {
         return volumeService.drawVolume(VOLUMES_AMOUNT);
     }
 

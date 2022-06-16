@@ -1,7 +1,7 @@
 package com.godVoice.service.impl;
 
 import com.godVoice.domain.VolumeEntity;
-import com.godVoice.exceptions.EntityNotExistException;
+import com.godVoice.exceptions.BusinessException;
 import com.godVoice.mappers.VolumeMapper;
 import com.godVoice.service.ChapterService;
 import com.godVoice.service.MessageService;
@@ -36,7 +36,7 @@ class MessageServiceTest {
     private RandomService randomService;
 
     @Test
-    public void shouldCreateMessage() throws EntityNotExistException {
+    public void shouldCreateMessage() throws BusinessException {
         // given
         VolumeDTO volumeDTO = VolumeDTO.builder()
                 .id(1L)

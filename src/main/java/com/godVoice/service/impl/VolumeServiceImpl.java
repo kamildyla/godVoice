@@ -2,6 +2,7 @@ package com.godVoice.service.impl;
 
 import com.godVoice.domain.VolumeEntity;
 import com.godVoice.exceptions.EntityNotExistException;
+import com.godVoice.exceptions.VolumeNumberException;
 import com.godVoice.mappers.VolumeMapper;
 import com.godVoice.repo.VolumeRepository;
 import com.godVoice.service.RandomService;
@@ -22,6 +23,8 @@ public class VolumeServiceImpl implements VolumeService {
     @Autowired
     private RandomService randomService;
 
+    private final int MAX_VOLUME_NUMBER = 73;
+
     @Override
     public VolumeDTO findById(Long id) throws EntityNotExistException {
         Optional<VolumeEntity> volumeEntityOpt = volumeRepo.findById(id);
@@ -30,23 +33,24 @@ public class VolumeServiceImpl implements VolumeService {
     }
 
     @Override
-    public VolumeDTO findByVolumeNumber(Integer volumeNumber) throws EntityNotExistException {
+    public VolumeDTO findByVolumeNumber(Integer volumeNumber) throws VolumeNumberException, EntityNotExistException {
+        VolumeValidator.checkVolumeNumber(volumeNumber, MAX_VOLUME_NUMBER);
         Long volume_id = volumeRepo.findIdByVolumeNumber(volumeNumber);
         return this.findById(volume_id);
     }
 
-    @Override
-    public Integer findChapterAmountById(Long id) {
-        return volumeRepo.findChapterAmountById(id);
-    }
+//    @Override
+//    public Integer findChapterAmountById(Long id) {
+//        return volumeRepo.findChapterAmountById(id);
+//    }
+
+//    @Override
+//    public Integer findChapterAmountByVolumeNumber(Integer volumeNumber) {
+//        return volumeRepo.findChapterAmountByVolumeNumber(volumeNumber);
+//    }
 
     @Override
-    public Integer findChapterAmountByVolumeNumber(Integer volumeNumber) {
-        return volumeRepo.findChapterAmountByVolumeNumber(volumeNumber);
-    }
-
-    @Override
-    public VolumeDTO drawVolume(int volumesAmount) throws EntityNotExistException {
+    public VolumeDTO drawVolume(int volumesAmount) throws VolumeNumberException, EntityNotExistException {
         Integer volumeNo = randomService.drawOneNumber(volumesAmount);
         return this.findByVolumeNumber(volumeNo);
     }

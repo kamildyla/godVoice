@@ -29,11 +29,11 @@ public class ChapterServiceImpl implements ChapterService {
         return ChapterMapper.toChapterDTO(chapterEntityOpt.get());
     }
 
-    @Override
-    public ChapterDTO findIdByChapterAndVolumeNumber(int chapterNumber, int volumeNumber) throws EntityNotExistException {
-        Long chapter_id = chapterRepo.findIdByChapterAndVolumeNumber(chapterNumber, volumeNumber);
-        return this.findById(chapter_id);
-    }
+//    @Override
+//    public ChapterDTO findIdByChapterAndVolumeNumber(int chapterNumber, int volumeNumber) throws EntityNotExistException {
+//        Long chapter_id = chapterRepo.findIdByChapterAndVolumeNumber(chapterNumber, volumeNumber);
+//        return this.findById(chapter_id);
+//    }
 
     @Override
     public ChapterDTO drawChapterFromVolume(VolumeDTO volume) throws EntityNotExistException {

@@ -8,7 +8,7 @@ public interface ChapterService {
 
     ChapterDTO findById(Long id) throws EntityNotExistException;
 
-    ChapterDTO findIdByChapterAndVolumeNumber(int chapterNumber, int volumeNumber) throws EntityNotExistException;
+//    ChapterDTO findIdByChapterAndVolumeNumber(int chapterNumber, int volumeNumber) throws EntityNotExistException;
 
     ChapterDTO drawChapterFromVolume(VolumeDTO volume) throws EntityNotExistException;
 }

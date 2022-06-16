@@ -40,7 +40,6 @@ class RandomServiceTest {
         int resultRangeTo = result.getRangeTo();
         int range = resultRangeTo - resultRangeFrom;
 
-        System.out.println(resultRangeFrom + " - " + resultRangeTo + " range: " + (range+1));
         //then
         assertTrue(resultRangeTo <= maxValue);
         assertTrue(resultRangeFrom >= 1);

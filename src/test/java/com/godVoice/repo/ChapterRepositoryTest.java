@@ -1,12 +1,11 @@
 package com.godVoice.repo;
 
 import com.godVoice.DataFactory;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -27,11 +26,44 @@ class ChapterRepositoryTest {
         dataFactory.deleteVolumesAndChapters();
     }
 
-    // TODO to improve
     @Test
-    public void should() {
-        Long id = chapterRepo.findIdByChapterAndVolumeNumber(2, 2);
-        System.out.println(id); // 13
+    public void shouldFindIdByChapterAndVolumeNumber() {
+        // given
+        int chapterNumber = 2;
+        int volumeNumber = 2;
+
+        // when
+        Long returnedId = chapterRepo.findIdByChapterAndVolumeNumber(chapterNumber, volumeNumber);
+
+        // then
+        assertNotNull(returnedId);
+        assertEquals(Long.class, returnedId.getClass());
+    }
+
+    @Test
+    public void shouldReturnNullWhenVolumeNumberNotExist() {
+        // given
+        int chapterNumber = 2;
+        int volumeNumber = 6;
+
+        // when
+        Long returnedId = chapterRepo.findIdByChapterAndVolumeNumber(chapterNumber, volumeNumber);
+
+        // then
+        assertNull(returnedId);
+    }
+
+    @Test
+    public void shouldReturnNullWhenChapterNumberNotExist() {
+        // given
+        int chapterNumber = -50;
+        int volumeNumber = 1;
+
+        // when
+        Long returnedId = chapterRepo.findIdByChapterAndVolumeNumber(chapterNumber, volumeNumber);
+
+        // then
+        assertNull(returnedId);
     }
 
 }
