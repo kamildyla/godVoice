@@ -1,11 +1,11 @@
 package com.godVoice.service;
 
-import com.godVoice.service.ds.Range;
+import com.godVoice.service.ds.RangeDs;
 
 public interface RandomService {
 
     Integer drawOneNumber(int maxValue);
 
-    Range drawRange(int maxValue, int maxRange);
+    RangeDs drawRange(int maxValue, int maxRange);
 
 }

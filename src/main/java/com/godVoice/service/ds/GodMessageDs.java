@@ -7,7 +7,7 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class GodMessage {
+public class GodMessageDs {
 
     private String volumeShort;
     private Integer chapterNumber;

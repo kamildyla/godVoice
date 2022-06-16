@@ -7,7 +7,7 @@ import com.godVoice.service.ChapterService;
 import com.godVoice.service.MessageService;
 import com.godVoice.service.RandomService;
 import com.godVoice.service.VolumeService;
-import com.godVoice.service.ds.Range;
+import com.godVoice.service.ds.RangeDs;
 import com.godVoice.types.ChapterDTO;
 import com.godVoice.types.VolumeDTO;
 import org.junit.jupiter.api.Test;
@@ -52,7 +52,7 @@ class MessageServiceTest {
                 .chapter(2)
                 .verses(30)
                 .build();
-        Range verses = Range.builder()
+        RangeDs verses = RangeDs.builder()
                 .rangeFrom(12)
                 .rangeTo(16)
                 .build();
