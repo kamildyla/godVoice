@@ -51,4 +51,16 @@ class VolumeRepositoryTest {
         assertNull(volumeId);
     }
 
+    @Test
+    public void shouldReturnNullIfInputIsNull() {
+        // given
+        Integer volumeNumber = null;
+
+        // when
+        Long volumeId = volumeRepo.findIdByVolumeNumber(volumeNumber);
+
+        // then
+        assertNull(volumeId);
+    }
+
 }

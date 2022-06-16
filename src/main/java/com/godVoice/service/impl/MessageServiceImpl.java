@@ -1,7 +1,6 @@
 package com.godVoice.service.impl;
 
-import com.godVoice.exceptions.EntityNotExistException;
-import com.godVoice.exceptions.VolumeNumberException;
+import com.godVoice.exceptions.BusinessException;
 import com.godVoice.service.ChapterService;
 import com.godVoice.service.MessageService;
 import com.godVoice.service.RandomService;
@@ -25,10 +24,10 @@ public class MessageServiceImpl implements MessageService {
 
     private final int VOLUMES_AMOUNT = 73;
 
-    private final int MAX_VERSES_AMOUNT = 7; // TODO if verses exist less than 7
+    private final int MAX_VERSES_AMOUNT = 7;
 
     @Override
-    public GodMessage prepareGodMessage() throws EntityNotExistException, VolumeNumberException {
+    public GodMessage prepareGodMessage() throws BusinessException {
         VolumeDTO volume = drawVolume();
         ChapterDTO chapter = drawChapter(volume);
         Range verses = drawVerses(chapter);
@@ -41,16 +40,20 @@ public class MessageServiceImpl implements MessageService {
         return String.format("%s, %d, %s", message.getVolumeShort(), message.getChapterNumber(), message.getVerses());
     }
 
-    private VolumeDTO drawVolume() throws EntityNotExistException, VolumeNumberException {
+    private VolumeDTO drawVolume() throws BusinessException {
         return volumeService.drawVolume(VOLUMES_AMOUNT);
     }
 
-    private ChapterDTO drawChapter(VolumeDTO volume) throws EntityNotExistException {
+    private ChapterDTO drawChapter(VolumeDTO volume) throws BusinessException {
         return chapterService.drawChapterFromVolume(volume);
     }
 
     private Range drawVerses(ChapterDTO chapter) {
-        return randomService.drawRange(chapter.getVerses(), MAX_VERSES_AMOUNT);
+        int maxVersesAmount = MAX_VERSES_AMOUNT;
+        if (chapter.getVerses() < maxVersesAmount) {
+            maxVersesAmount = chapter.getVerses();
+        }
+        return randomService.drawRange(chapter.getVerses(), maxVersesAmount);
     }
 
     private GodMessage prepareMessage(VolumeDTO volume, ChapterDTO chapter, Range verses) {

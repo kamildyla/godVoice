@@ -3,6 +3,7 @@ package com.godVoice.service.impl;
 import com.godVoice.DataFactory;
 import com.godVoice.exceptions.BusinessException;
 import com.godVoice.exceptions.EntityNotExistException;
+import com.godVoice.exceptions.InputException;
 import com.godVoice.exceptions.VolumeNumberException;
 import com.godVoice.repo.VolumeRepository;
 import com.godVoice.service.VolumeService;
@@ -41,9 +42,14 @@ class VolumeServiceTest {
         // given when
         VolumeDTO volume = volumeService.drawVolume(VOLUMES_AMOUNT);
         int result = volume.getVolumeNumber();
-        System.out.println(result);
         // then
         assertTrue(result >= 1 && result <= 5);
+    }
+
+    @Test
+    public void shouldThrowExceptionWhenAmountIsLessOrEqualZreo()  {
+        InputException exception = assertThrows(InputException.class, () -> volumeService.drawVolume(0));
+        assertEquals("Input element is wrong: 0", exception.getMessage());
     }
 
     @Test
@@ -70,6 +76,17 @@ class VolumeServiceTest {
         EntityNotExistException exception = assertThrows(EntityNotExistException.class, () -> volumeService.findById(wrongId));
 
         assertEquals("Element does not exist", exception.getMessage());
+    }
+
+    @Test
+    public void shouldThrowExceptionWhenIdIsNull() {
+        // given
+        Long nullId = null;
+
+        // when
+        InputException exception = assertThrows(InputException.class, () -> volumeService.findById(nullId));
+
+        assertEquals("Input element is wrong: null", exception.getMessage());
     }
 
     @Test

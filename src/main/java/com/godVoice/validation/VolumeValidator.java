@@ -2,7 +2,9 @@ package com.godVoice.validation;
 
 import com.godVoice.domain.VolumeEntity;
 import com.godVoice.exceptions.EntityNotExistException;
+import com.godVoice.exceptions.InputException;
 import com.godVoice.exceptions.VolumeNumberException;
+import com.godVoice.types.VolumeDTO;
 
 import java.util.Optional;
 
@@ -19,4 +21,11 @@ public class VolumeValidator {
             throw new VolumeNumberException(volumeNumber);
         }
     }
+
+    public static void volumeIsNotNull(VolumeDTO volume) throws InputException {
+        if (volume == null) {
+            throw new InputException(null);
+        }
+    }
+
 }

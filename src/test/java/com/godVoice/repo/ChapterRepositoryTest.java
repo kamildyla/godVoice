@@ -66,4 +66,17 @@ class ChapterRepositoryTest {
         assertNull(returnedId);
     }
 
+    @Test
+    public void shouldReturnNullWhenInputIsNull() {
+        // given
+        Integer chapterNumber = null;
+        Integer volumeNumber = null;
+
+        // when
+        Long returnedId = chapterRepo.findIdByChapterAndVolumeNumber(chapterNumber, volumeNumber);
+
+        // then
+        assertNull(returnedId);
+    }
+
 }
