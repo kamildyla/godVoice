@@ -16,6 +16,7 @@ public class VolumeMapper {
         return VolumeDTO.builder()
                 .id(volumeEntity.getId())
                 .version(volumeEntity.getVersion())
+                .volumeNumber(volumeEntity.getVolumeNumber())
                 .volumeName(volumeEntity.getVolumeName())
                 .volumeShort(volumeEntity.getVolumeShort())
                 .chapterAmount(volumeEntity.getChapterAmount())
@@ -30,6 +31,7 @@ public class VolumeMapper {
         VolumeEntity volumeEntity = new VolumeEntity();
         volumeEntity.setId(volumeDTO.getId());
         volumeEntity.setVersion(volumeDTO.getVersion());
+        volumeEntity.setVolumeNumber(volumeDTO.getVolumeNumber());
         volumeEntity.setVolumeName(volumeDTO.getVolumeName());
         volumeEntity.setVolumeShort(volumeDTO.getVolumeShort());
         volumeEntity.setChapterAmount(volumeDTO.getChapterAmount());
