@@ -19,12 +19,12 @@ INSERT INTO god_voice.volume(volume_number, volume_name, volume_short, chapter_a
 INSERT INTO god_voice.volume(volume_number, volume_name, volume_short, chapter_amount, version, create_date, update_date) VALUES ('19', 'Księga Estery', 'Est', '10', '1', now(), now());
 INSERT INTO god_voice.volume(volume_number, volume_name, volume_short, chapter_amount, version, create_date, update_date) VALUES ('20', '1 Księga Machabejska', '1Mch', '16', '1', now(), now());
 INSERT INTO god_voice.volume(volume_number, volume_name, volume_short, chapter_amount, version, create_date, update_date) VALUES ('21', '2 Księga Machabejska', '2Mch', '15', '1', now(), now());
-INSERT INTO god_voice.volume(volume_number, volume_name, volume_short, chapter_amount, version, create_date, update_date) VALUES ('22', 'Księga Hioba', 'Hi', '15', '1', now(), now());
+INSERT INTO god_voice.volume(volume_number, volume_name, volume_short, chapter_amount, version, create_date, update_date) VALUES ('22', 'Księga Hioba', 'Hi', '42', '1', now(), now());
 INSERT INTO god_voice.volume(volume_number, volume_name, volume_short, chapter_amount, version, create_date, update_date) VALUES ('23', 'Księga Psalmów', 'Ps', '150', '1', now(), now());
 INSERT INTO god_voice.volume(volume_number, volume_name, volume_short, chapter_amount, version, create_date, update_date) VALUES ('24', 'Księga Przysłów', 'Prz', '31', '1', now(), now());
 INSERT INTO god_voice.volume(volume_number, volume_name, volume_short, chapter_amount, version, create_date, update_date) VALUES ('25', 'Księga Koheleta', 'Koh', '12', '1', now(), now());
 INSERT INTO god_voice.volume(volume_number, volume_name, volume_short, chapter_amount, version, create_date, update_date) VALUES ('26', 'Pieśń nad Pieśniami', 'Pnp', '8', '1', now(), now());
-INSERT INTO god_voice.volume(volume_number, volume_name, volume_short, chapter_amount, version, create_date, update_date) VALUES ('27', 'Księga Mądrości', 'Ndr', '19', '1', now(), now());
+INSERT INTO god_voice.volume(volume_number, volume_name, volume_short, chapter_amount, version, create_date, update_date) VALUES ('27', 'Księga Mądrości', 'Mdr', '19', '1', now(), now());
 INSERT INTO god_voice.volume(volume_number, volume_name, volume_short, chapter_amount, version, create_date, update_date) VALUES ('28', 'Mądrość Syracha', 'Syr', '51', '1', now(), now());
 INSERT INTO god_voice.volume(volume_number, volume_name, volume_short, chapter_amount, version, create_date, update_date) VALUES ('29', 'Księga Izajasza', 'Iz', '66', '1', now(), now());
 INSERT INTO god_voice.volume(volume_number, volume_name, volume_short, chapter_amount, version, create_date, update_date) VALUES ('30', 'Księga Jeremiasza', 'Jr', '52', '1', now(), now());
