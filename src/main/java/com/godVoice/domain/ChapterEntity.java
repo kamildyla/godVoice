@@ -2,17 +2,29 @@ package com.godVoice.domain;
 
 import javax.persistence.*;
 
+/**
+ * Chapter contained in volume of Holy Bible.
+ */
 @Entity
 @Table(name = "CHAPTER")
 public class ChapterEntity extends AbstractEntity{
 
+    /**
+     * Ordinal number of volume (from 1 to 73).
+     */
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "VOLUME_NO", nullable = false)
     private VolumeEntity volumeNo;
 
+    /**
+     * Ordinal number of chapter (starts from 1 for each volume).
+     */
     @Column(nullable = false)
     private Integer chapter;
 
+    /**
+     * Amount of verses contained in chapter (starts from 1 for each chapter).
+     */
     @Column(nullable = false)
     private Integer verses;
 

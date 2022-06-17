@@ -8,7 +8,6 @@ public class GodVoiceApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(GodVoiceApplication.class, args);
-		System.out.println("Hello GOD_VOICE app !!!");
 	}
 
 }
