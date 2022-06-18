@@ -6,7 +6,7 @@ spring:
     url: 'jdbc:mysql://localhost:3306/god_voice'
     username: 'root'
     password: 'mySQLpa$$word'
-    driverClassName: 'com.mysql.jdbc.Driver'
+    driverClassName: 'com.mysql.cj.jdbc.Driver'
   jpa:
     database-platform: 'org.hibernate.dialect.MySQL5InnoDBDialect'
     properties:
