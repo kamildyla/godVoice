@@ -1,7 +1,7 @@
 package com.godVoice.service.impl;
 
 import com.godVoice.service.RandomService;
-import com.godVoice.service.ds.Range;
+import com.godVoice.service.ds.RangeDs;
 import org.junit.jupiter.api.RepeatedTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -34,7 +34,7 @@ class RandomServiceTest {
         int maxRange = 7;
 
         // when
-        Range result = randomService.drawRange(maxValue, maxRange);
+        RangeDs result = randomService.drawRange(maxValue, maxRange);
 
         int resultRangeFrom = result.getRangeFrom();
         int resultRangeTo = result.getRangeTo();

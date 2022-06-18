@@ -5,9 +5,9 @@ import com.godVoice.exceptions.BusinessException;
 import com.godVoice.mappers.VolumeMapper;
 import com.godVoice.service.ChapterService;
 import com.godVoice.service.MessageService;
-import com.godVoice.service.RandomService;
 import com.godVoice.service.VolumeService;
-import com.godVoice.service.ds.Range;
+import com.godVoice.service.ds.GodMessageDs;
+import com.godVoice.service.ds.RangeDs;
 import com.godVoice.types.ChapterDTO;
 import com.godVoice.types.VolumeDTO;
 import org.junit.jupiter.api.Test;
@@ -33,7 +33,7 @@ class MessageServiceTest {
     @MockBean
     private ChapterService chapterService;
     @MockBean
-    private RandomService randomService;
+    private RandomServiceImpl randomServiceImpl;
 
     @Test
     public void shouldCreateMessage() throws BusinessException {
@@ -41,7 +41,7 @@ class MessageServiceTest {
         VolumeDTO volumeDTO = VolumeDTO.builder()
                 .id(1L)
                 .volumeName("VolumeName")
-                .volumeShort("vol1")
+                .volumeShort("vol5")
                 .volumeNumber(5)
                 .chapterAmount(2)
                 .build();
@@ -52,20 +52,54 @@ class MessageServiceTest {
                 .chapter(2)
                 .verses(30)
                 .build();
-        Range verses = Range.builder()
+        RangeDs verses = RangeDs.builder()
                 .rangeFrom(12)
                 .rangeTo(16)
                 .build();
 
         when(volumeService.drawVolume(anyInt())).thenReturn(volumeDTO);
         when(chapterService.drawChapterFromVolume(any())).thenReturn(chapterDTO);
-        when(randomService.drawRange(anyInt(), anyInt())).thenReturn(verses);
+        when(randomServiceImpl.drawRange(anyInt(), anyInt())).thenReturn(verses);
 
         // when
-        String result = messageService.messageToString(messageService.prepareGodMessage());
+        GodMessageDs message = messageService.prepareGodMessage();
 
         // then
-        assertEquals("vol1, 2, 12-16", result);
+        assertEquals("vol5", message.getVolumeShort());
+        assertEquals(2, message.getChapterNumber());
+        assertEquals("12-16", message.getVerses());
+    }
+
+    @Test
+    public void shouldCreateProperMessageWhenVersesAmountIsLessThanMaxRange() throws BusinessException {
+        // given
+        VolumeDTO volumeDTO = VolumeDTO.builder()
+                .id(2L)
+                .volumeName("VolumeTwo")
+                .volumeShort("vol2")
+                .volumeNumber(2)
+                .chapterAmount(1)
+                .build();
+        VolumeEntity volumeEntity = VolumeMapper.toVolumeEntity(volumeDTO);
+        ChapterDTO chapterDTO = ChapterDTO.builder()
+                .id(1L)
+                .volumeNo(volumeEntity)
+                .chapter(1)
+                .verses(1)
+                .build();
+
+        when(volumeService.drawVolume(anyInt())).thenReturn(volumeDTO);
+        when(chapterService.drawChapterFromVolume(any())).thenReturn(chapterDTO);
+        when(randomServiceImpl.drawRange(anyInt(), anyInt())).thenCallRealMethod();
+        when(randomServiceImpl.drawOneNumber(anyInt())).thenCallRealMethod();
+
+        // when
+        GodMessageDs message = messageService.prepareGodMessage();
+
+        // then
+        assertEquals("vol2", message.getVolumeShort());
+        assertEquals(1, message.getChapterNumber());
+        assertEquals("1", message.getVerses());
     }
 
 }

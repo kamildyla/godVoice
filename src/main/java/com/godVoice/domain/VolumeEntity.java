@@ -4,21 +4,40 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
+/**
+ * Volume of the Holy Bible.
+ */
 @Entity
 @Table(name = "VOLUME")
 public class VolumeEntity extends AbstractEntity {
 
+    /**
+     * Ordinal number of volume (from 1 to 73).
+     */
     @Column(nullable = false)
     private Integer volumeNumber;
+
+    /**
+     * Full name of volume.
+     */
     @Column(nullable = false)
     private String volumeName;
 
+    /**
+     * Shortened form of volume.
+     */
     @Column(nullable = false)
     private String volumeShort;
 
+    /**
+     * Amount of chapters in volume.
+     */
     @Column(nullable = false)
     private Integer chapterAmount;
 
+    /**
+     * Collection of chapters entity contained in volume.
+     */
     @OneToMany(
             mappedBy = "volumeNo",
             cascade = CascadeType.REMOVE

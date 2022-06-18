@@ -7,7 +7,7 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Range {
+public class RangeDs {
 
     private int rangeFrom;
     private int rangeTo;

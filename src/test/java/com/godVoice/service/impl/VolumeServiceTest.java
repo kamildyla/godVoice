@@ -25,7 +25,7 @@ class VolumeServiceTest {
     @Autowired
     private VolumeRepository volumeRepo;
 
-    private final int VOLUMES_AMOUNT = 5;
+    private final int VOLUMES_AMOUNT_TEST = 5;
 
     @BeforeAll
     public void setUp() {
@@ -40,7 +40,7 @@ class VolumeServiceTest {
     @RepeatedTest(20)
     public void shouldReturnRandomVolume() throws BusinessException {
         // given when
-        VolumeDTO volume = volumeService.drawVolume(VOLUMES_AMOUNT);
+        VolumeDTO volume = volumeService.drawVolume(VOLUMES_AMOUNT_TEST);
         int result = volume.getVolumeNumber();
         // then
         assertTrue(result >= 1 && result <= 5);
