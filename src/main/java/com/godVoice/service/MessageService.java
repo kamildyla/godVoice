@@ -15,11 +15,4 @@ public interface MessageService {
      */
     GodMessageDs prepareGodMessage() throws BusinessException;
 
-    /**
-     * Converts message to String.
-     * @param message message to convert.
-     * @return converted message.
-     */
-    String messageToString(GodMessageDs message);
-
 }

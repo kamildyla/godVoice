@@ -1,5 +1,6 @@
 package com.godVoice.service.impl;
 
+import com.godVoice.constants.HolyBibleConst;
 import com.godVoice.domain.VolumeEntity;
 import com.godVoice.exceptions.EntityNotExistException;
 import com.godVoice.exceptions.InputException;
@@ -25,8 +26,6 @@ public class VolumeServiceImpl implements VolumeService {
     @Autowired
     private RandomService randomService;
 
-    private final int MAX_VOLUME_NUMBER = 73;
-
     @Override
     public VolumeDTO findById(Long id) throws EntityNotExistException, InputException {
         InputValidator.idIsNotNull(id);
@@ -37,7 +36,7 @@ public class VolumeServiceImpl implements VolumeService {
 
     @Override
     public VolumeDTO findByVolumeNumber(Integer volumeNumber) throws VolumeNumberException, EntityNotExistException, InputException {
-        VolumeValidator.checkVolumeNumber(volumeNumber, MAX_VOLUME_NUMBER);
+        VolumeValidator.checkVolumeNumber(volumeNumber, HolyBibleConst.VOLUMES_AMOUNT);
         Long volume_id = volumeRepo.findIdByVolumeNumber(volumeNumber);
         return this.findById(volume_id);
     }

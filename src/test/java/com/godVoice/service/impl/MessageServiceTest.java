@@ -6,6 +6,7 @@ import com.godVoice.mappers.VolumeMapper;
 import com.godVoice.service.ChapterService;
 import com.godVoice.service.MessageService;
 import com.godVoice.service.VolumeService;
+import com.godVoice.service.ds.GodMessageDs;
 import com.godVoice.service.ds.RangeDs;
 import com.godVoice.types.ChapterDTO;
 import com.godVoice.types.VolumeDTO;
@@ -61,10 +62,12 @@ class MessageServiceTest {
         when(randomServiceImpl.drawRange(anyInt(), anyInt())).thenReturn(verses);
 
         // when
-        String result = messageService.messageToString(messageService.prepareGodMessage());
+        GodMessageDs message = messageService.prepareGodMessage();
 
         // then
-        assertEquals("vol5, 2, 12-16", result);
+        assertEquals("vol5", message.getVolumeShort());
+        assertEquals(2, message.getChapterNumber());
+        assertEquals("12-16", message.getVerses());
     }
 
     @Test
@@ -91,10 +94,12 @@ class MessageServiceTest {
         when(randomServiceImpl.drawOneNumber(anyInt())).thenCallRealMethod();
 
         // when
-        String result = messageService.messageToString(messageService.prepareGodMessage());
+        GodMessageDs message = messageService.prepareGodMessage();
 
         // then
-        assertEquals("vol2, 1, 1", result);
+        assertEquals("vol2", message.getVolumeShort());
+        assertEquals(1, message.getChapterNumber());
+        assertEquals("1", message.getVerses());
     }
 
 }

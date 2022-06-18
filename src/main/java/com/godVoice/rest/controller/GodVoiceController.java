@@ -1,7 +1,9 @@
 package com.godVoice.rest.controller;
 
+import com.godVoice.constants.UrlPathNames;
 import com.godVoice.exceptions.BusinessException;
 import com.godVoice.service.MessageService;
+import com.godVoice.service.ds.GodMessageDs;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -17,8 +19,9 @@ public class GodVoiceController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/")
-    public String showGodMessage() throws BusinessException {
-        return messageService.messageToString(messageService.prepareGodMessage());
+    @GetMapping(UrlPathNames.HOME_PAGE)
+    public GodMessageDs showGodMessage() throws BusinessException {
+        return messageService.prepareGodMessage();
     }
+
 }
