@@ -11,11 +11,15 @@
 
     <artifactId>web</artifactId>
 
+    <properties>
+        <persistence.version>0.0.1-SNAPSHOT</persistence.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.godVoice</groupId>
             <artifactId>persistence</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${persistence.version}</version>
             <scope>compile</scope>
         </dependency>
 
