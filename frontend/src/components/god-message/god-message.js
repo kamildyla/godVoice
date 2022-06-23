@@ -1,15 +1,18 @@
 import {loadMessage} from "../../service/api-service";
+import {mapToMessage} from "../../mapper/message-mapper";
+import './god-message.scss';
 
 export async function renderMessage() {
     const messageFromDb = await loadMessage();
-    const hello = document.getElementById('hello');
+    const message = mapToMessage(messageFromDb);
 
-    const message = document.createElement('div');
-    message.innerHTML += `
-        <div id="singleMssage">
-            <h1>${messageFromDb.volumeShort}, ${messageFromDb.chapterNumber}, ${messageFromDb.verses}</h1>
-        </div>
+    const hello = document.getElementById('main');
+
+    const preparedMessage = document.createElement('div');
+    preparedMessage.id = 'message';
+    preparedMessage.innerHTML += `
+        <h1>${message.volumeShort}, ${message.chapterNumber}, ${message.verses}</h1>
     `;
 
-    hello.appendChild(message);
+    hello.appendChild(preparedMessage);
 }
